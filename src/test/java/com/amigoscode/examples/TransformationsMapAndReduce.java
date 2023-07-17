@@ -12,11 +12,36 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 public class TransformationsMapAndReduce {
 
     @Test
     void yourFirstTransformationWithMap() throws IOException {
+        //transform from Person to PersonDTO
+
         List<Person> people = MockData.getPeople();
+
+        final Function<Person, PersonDTO> personPersonDTOFunction = person ->                      //ctrl + P para ver o que recebe por argumento
+                new PersonDTO(person.getId(), person.getFirstName(), person.getAge());
+
+
+        List<PersonDTO> dtos = people.stream()
+                .map(PersonDTO::map)
+                .toList();
+
+        /*              ALTERNATIVA
+        *
+        * List<PersonDTO> dtos = people.stream()
+                .map(personPersonDTOFunction)
+                .toList();
+        *
+        * */
+
+        assertThat(people.size()).isEqualTo(dtos.size());
+
+        dtos.forEach(System.out::println);
+
     }
 
     @Test
