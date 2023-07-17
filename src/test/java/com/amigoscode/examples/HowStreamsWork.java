@@ -13,7 +13,8 @@ public class HowStreamsWork {
     public void understandingCollect() throws Exception {
         List<String> emails = MockData.getPeople()
                 .stream()
-                .map(Person::getEmail)
+                .map(Person::getEmail)              //passa de uma stream de pessoas para uma stream se strings,
+                                                    // pois get Email é uma function que retorna String (email)
                 .collect(Collectors.toList());
 
         emails.forEach(System.out::println);
@@ -25,15 +26,15 @@ public class HowStreamsWork {
                 MockData.getCars()
                         .stream()
                         .filter(car -> {
-                            System.out.println("filter car " + car);
+                            //System.out.println("filter car " + car);
                             return car.getPrice() < 10000;
                         })
                         .map(car -> {
-                            System.out.println("mapping car " + car);
+                            //System.out.println("mapping car " + car);
                             return car.getPrice();
                         })
                         .map(price -> {
-                            System.out.println("mapping price " + price);
+                            //System.out.println("mapping price " + price);
                             return price + (price * .14);
                         })
                         .collect(Collectors.toList())
