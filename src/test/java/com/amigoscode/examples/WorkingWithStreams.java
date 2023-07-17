@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 public class WorkingWithStreams {
 
     @Test
-    void steams() {
+    void streams() {
         List<String> names = List.of("Amigoscode", "Alex", "Zara");
     }
 }
