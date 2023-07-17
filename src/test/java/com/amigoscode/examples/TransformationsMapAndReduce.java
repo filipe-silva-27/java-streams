@@ -52,6 +52,7 @@ public class TransformationsMapAndReduce {
     void mapToDoubleAndFindAverageCarPrice() throws IOException {
         List<Car> cars = MockData.getCars();
 
+        //função average existe para streams que já são de um tipo compativel com a operacao (int ou double)
         double averageCarPrice = cars.stream().mapToDouble(Car::getPrice).average().orElse(-1.00);
 
         System.out.println(averageCarPrice);

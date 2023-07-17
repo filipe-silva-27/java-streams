@@ -30,15 +30,29 @@ public class TransformationsWithFlatMap {
 
     @Test
     public void withFlatMap() throws Exception {
-        // [Mariam, Alex, Ismail, John, Alesha, Andre, Susy, Ali]
+        // Passar de uma lista de listas para uma lista só:
+        // [Maria, Alex, Ismail, John, Alesha, Andre, Susy, Ali]
+
+        List<String> flattedList = arrayListOfNames.stream().flatMap(List::stream).collect(Collectors.toList());
+
+        System.out.println(flattedList);
+
     }
 
     @Test
     public void flatMapWithOptionals() {
         List<Optional<String>> optionals = List.of(
                 Optional.of("Amigos"),
-                Optional.of("Code")
+                Optional.of("Code"),
+                Optional.ofNullable(null)
         );
+
+        System.out.println(optionals);
+
+        final List<String> flattedOptionals = optionals.stream().flatMap(Optional::stream).toList();
+
+        System.out.println(flattedOptionals);
+
     }
 }
 
