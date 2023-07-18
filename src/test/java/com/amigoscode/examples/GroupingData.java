@@ -12,9 +12,19 @@ import java.util.stream.Collectors;
 
 public class GroupingData {
 
+    //fazem se groups no collect()
+
     @Test
     public void simpleGrouping() throws Exception {
         List<Car> cars = MockData.getCars();
+
+        //ATENÇÃO!!!! isto fica num Map e não numa list
+        final Map<String, List<Car>> collectionByMake = cars.stream().collect(Collectors.groupingBy(Car::getMake));
+
+        collectionByMake.forEach((make,groupedCars) -> {        //percorre mapa!
+            System.out.println("Cars from make " + make + ":");
+            groupedCars.forEach(System.out::println);
+        });
     }
 
     @Test
@@ -30,6 +40,13 @@ public class GroupingData {
                 "Alex",
                 "Alex"
         );
+
+        Map<String, Long> map = names.stream()
+                .collect(Collectors.groupingBy(
+                                    Function.identity(),
+                                    Collectors.counting()
+                        )
+                );
     }
 
 }
